@@ -285,3 +285,27 @@ opacity:0.7;
 font-size:14px;
 
 }
+.idea-actions{
+margin-top:12px;
+display:flex;
+gap:10px;
+}
+
+.delete-btn{
+background:#ff4d4d;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.delete-btn:hover{
+background:#e60000;
+}
+
+#output{
+margin-top:20px;
+max-height:420px;
+overflow-y:auto;
+}

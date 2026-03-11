@@ -34,15 +34,11 @@ Do NOT use markdown symbols like # or *.
 try{
 
 const response = await fetch("/api/generate",{
-
 method:"POST",
-
 headers:{
 "Content-Type":"application/json"
 },
-
 body:JSON.stringify({prompt})
-
 });
 
 const data = await response.json();
@@ -63,6 +59,7 @@ let cleanIdea = idea
 .replace(/Description:/gi,"<br><br><strong>Description:</strong> ")
 .replace(/Difficulty:/gi,"<br><br><strong>Difficulty:</strong> ")
 .replace(/Tech Stack:/gi,"<br><br><strong>Tech Stack:</strong> ");
+
 tabsHTML += `<button class="tab-btn ${index===0 ? 'active' : ''}" onclick="showIdea(${index})">Idea ${index+1}</button>`;
 
 contentHTML += `
@@ -72,12 +69,15 @@ contentHTML += `
 ${cleanIdea}
 </div>
 
+<div class="idea-actions">
 <button class="copy-btn" onclick="copyIdea(this)">
 Copy Idea 📋
 </button>
+
 <button class="save-btn" onclick="saveIdea(this)">
 Save Idea ⭐
 </button>
+</div>
 
 </div>
 `;
@@ -122,7 +122,7 @@ document.querySelectorAll(".tab-btn")[index].classList.add("active");
 
 function copyIdea(button){
 
-const ideaText = button.parentElement.querySelector(".idea-text").innerText;
+const ideaText = button.parentElement.parentElement.querySelector(".idea-text").innerText;
 
 navigator.clipboard.writeText(ideaText);
 
@@ -138,9 +138,11 @@ button.innerText = "Copy Idea 📋";
 function clearIdeas(){
 document.getElementById("output").innerHTML="";
 }
+
+
 function saveIdea(button){
 
-const ideaText = button.parentElement.querySelector(".idea-text").innerText;
+const ideaText = button.parentElement.parentElement.querySelector(".idea-text").innerText;
 
 let savedIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
 
@@ -151,6 +153,8 @@ localStorage.setItem("savedIdeas", JSON.stringify(savedIdeas));
 button.innerText = "Saved ⭐";
 
 }
+
+
 function showSavedIdeas(){
 
 const output = document.getElementById("output");
@@ -172,11 +176,19 @@ card.className = "idea-card";
 card.innerHTML = `
 <h3>⭐ Saved Idea ${index+1}</h3>
 
-<p>${idea}</p>
+<div class="idea-text">${idea}</div>
 
-<button onclick="deleteIdea(${index})">
+<div class="idea-actions">
+
+<button class="copy-btn" onclick="copySavedIdea(${index})">
+Copy Idea 📋
+</button>
+
+<button class="delete-btn" onclick="deleteIdea(${index})">
 Delete ❌
 </button>
+
+</div>
 `;
 
 output.appendChild(card);
@@ -184,6 +196,19 @@ output.appendChild(card);
 });
 
 }
+
+
+function copySavedIdea(index){
+
+let savedIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+
+navigator.clipboard.writeText(savedIdeas[index]);
+
+alert("Idea copied!");
+
+}
+
+
 function deleteIdea(index){
 
 let savedIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
