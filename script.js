@@ -59,12 +59,10 @@ ideas.forEach((idea,index)=>{
 let cleanIdea = idea
 .replace(/[#*]/g,"")
 .replace(/\*\*/g,"")
-.replace(/Idea Name:/gi,"<strong>Idea Name:</strong>")
-.replace(/Description:/gi,"<strong>Description:</strong>")
-.replace(/Difficulty:/gi,"<strong>Difficulty:</strong>")
-.replace(/Tech Stack:/gi,"<strong>Tech Stack:</strong>")
-.replace(/\n/g,"<br>");
-
+.replace(/Idea Name:/gi,"<br><strong>Idea Name:</strong> ")
+.replace(/Description:/gi,"<br><br><strong>Description:</strong> ")
+.replace(/Difficulty:/gi,"<br><br><strong>Difficulty:</strong> ")
+.replace(/Tech Stack:/gi,"<br><br><strong>Tech Stack:</strong> ");
 tabsHTML += `<button class="tab-btn ${index===0 ? 'active' : ''}" onclick="showIdea(${index})">Idea ${index+1}</button>`;
 
 contentHTML += `
