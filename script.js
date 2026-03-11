@@ -44,6 +44,15 @@ body:JSON.stringify({prompt})
 const data = await response.json();
 
 if(data.text){
+    // Save generation to history
+let history = JSON.parse(localStorage.getItem("ideaHistory")) || [];
+history.unshift(data.text);
+
+if(history.length > 10){
+history.pop();
+}
+
+localStorage.setItem("ideaHistory", JSON.stringify(history));
 
 let ideas = data.text.split(/Idea\s*\d+/i).filter(i => i.trim() !== "");
 
@@ -286,3 +295,42 @@ tsParticles.load("particles", {
   },
   detectRetina: true
 });
+function showHistory(){
+
+const output = document.getElementById("output");
+
+let history = JSON.parse(localStorage.getItem("ideaHistory")) || [];
+
+output.innerHTML = "";
+
+if(history.length === 0){
+output.innerHTML = "<p>No idea history yet.</p>";
+return;
+}
+
+history.forEach((entry, index)=>{
+
+let clean = entry
+.replace(/[#*]/g,"")
+.replace(/\*\*/g,"")
+.replace(/Idea Name:/gi,"<br><strong>Idea Name:</strong> ")
+.replace(/Description:/gi,"<br><br><strong>Description:</strong> ")
+.replace(/Difficulty:/gi,"<br><br><strong>Difficulty:</strong> ")
+.replace(/Tech Stack:/gi,"<br><br><strong>Tech Stack:</strong> ");
+
+const card = document.createElement("div");
+card.className = "idea-card";
+
+card.innerHTML = `
+<h3>🕒 Generation ${index+1}</h3>
+
+<div class="idea-text">
+${clean}
+</div>
+`;
+
+output.appendChild(card);
+
+});
+
+}
