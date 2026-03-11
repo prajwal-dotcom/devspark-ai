@@ -204,6 +204,10 @@ Save Idea ⭐
 Download PDF 📄
 </button>
 
+<button class="delete-btn" onclick="deleteIdea(${index})">
+Delete ❌
+</button>
+
 </div>
 `;
 
