@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
 
-  // Only allow POST requests
+  // Allow only POST
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const { prompt } = req.body || {};
 
   if (!prompt) {
-    return res.status(400).json({ error: "Prompt is required" });
+    return res.status(400).json({ error: "Prompt is missing" });
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
@@ -33,20 +33,33 @@ export default async function handler(req, res) {
     );
 
     const data = await response.json();
+
     console.log("Gemini response:", JSON.stringify(data));
+
+    // Handle API quota errors
+    if (data.error) {
+      return res.status(200).json({
+        text: "⚠️ AI request limit reached. Please try again later."
+      });
+    }
 
     let text = "";
 
     if (data?.candidates?.length > 0) {
       text = data.candidates[0].content.parts
-     .map(part => part.text)
-     .join("");
-}
+        .map(part => part.text)
+        .join("");
+    }
 
-res.status(200).json({ text });
+    res.status(200).json({ text });
 
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "AI request failed" });
+
+    console.error("Server error:", error);
+
+    res.status(500).json({
+      text: "⚠️ AI request failed. Please try again."
+    });
+
   }
 }
