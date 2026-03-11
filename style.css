@@ -324,3 +324,25 @@ margin-top:18px;
 line-height:1.7;
 margin-top:8px;
 }
+.badge{
+padding:4px 10px;
+border-radius:8px;
+font-size:12px;
+font-weight:600;
+margin-left:5px;
+}
+
+.badge.easy{
+background:#22c55e;
+color:white;
+}
+
+.badge.medium{
+background:#facc15;
+color:black;
+}
+
+.badge.hard{
+background:#ef4444;
+color:white;
+}

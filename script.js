@@ -57,7 +57,9 @@ let cleanIdea = idea
 .replace(/\*\*/g,"")
 .replace(/Idea Name:/gi,"<br><strong>Idea Name:</strong> ")
 .replace(/Description:/gi,"<br><br><strong>Description:</strong> ")
-.replace(/Difficulty:/gi,"<br><br><strong>Difficulty:</strong> ")
+.replace(/Difficulty:\s*Easy/gi,'<br><br><strong>Difficulty:</strong> <span class="badge easy">Easy</span>')
+.replace(/Difficulty:\s*Medium/gi,'<br><br><strong>Difficulty:</strong> <span class="badge medium">Medium</span>')
+.replace(/Difficulty:\s*Hard/gi,'<br><br><strong>Difficulty:</strong> <span class="badge hard">Hard</span>')
 .replace(/Tech Stack:/gi,"<br><br><strong>Tech Stack:</strong> ");
 
 tabsHTML += `<button class="tab-btn ${index===0 ? 'active' : ''}" onclick="showIdea(${index})">Idea ${index+1}</button>`;
@@ -173,7 +175,9 @@ savedIdeas.forEach((idea, index)=>{
 let formattedIdea = idea
 .replace(/Idea Name:/gi,"<br><strong>Idea Name:</strong> ")
 .replace(/Description:/gi,"<br><br><strong>Description:</strong> ")
-.replace(/Difficulty:/gi,"<br><br><strong>Difficulty:</strong> ")
+.replace(/Difficulty:\s*Easy/gi,'<br><br><strong>Difficulty:</strong> <span class="badge easy">Easy</span>')
+.replace(/Difficulty:\s*Medium/gi,'<br><br><strong>Difficulty:</strong> <span class="badge medium">Medium</span>')
+.replace(/Difficulty:\s*Hard/gi,'<br><br><strong>Difficulty:</strong> <span class="badge hard">Hard</span>')
 .replace(/Tech Stack:/gi,"<br><br><strong>Tech Stack:</strong> ");
 
 const card = document.createElement("div");
