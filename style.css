@@ -346,3 +346,15 @@ color:black;
 background:#ef4444;
 color:white;
 }
+.pdf-btn{
+background:#6366f1;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+}
+
+.pdf-btn:hover{
+background:#4f46e5;
+}

@@ -192,12 +192,16 @@ ${formattedIdea}
 
 <div class="idea-actions">
 
-<button class="copy-btn" onclick="copySavedIdea(${index})">
+<button class="copy-btn" onclick="copyIdea(this)">
 Copy Idea 📋
 </button>
 
-<button class="delete-btn" onclick="deleteIdea(${index})">
-Delete ❌
+<button class="save-btn" onclick="saveIdea(this)">
+Save Idea ⭐
+</button>
+
+<button class="pdf-btn" onclick="downloadPDF(this)">
+Download PDF 📄
 </button>
 
 </div>
@@ -229,5 +233,20 @@ savedIdeas.splice(index,1);
 localStorage.setItem("savedIdeas", JSON.stringify(savedIdeas));
 
 showSavedIdeas();
+
+}
+function downloadPDF(button){
+
+const { jsPDF } = window.jspdf;
+
+const ideaText = button.parentElement.parentElement.querySelector(".idea-text").innerText;
+
+const doc = new jsPDF();
+
+const lines = doc.splitTextToSize(ideaText, 180);
+
+doc.text(lines, 10, 20);
+
+doc.save("DevSpark-Idea.pdf");
 
 }
