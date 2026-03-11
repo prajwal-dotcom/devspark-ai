@@ -44,10 +44,10 @@ https://devspark-ai.vercel.app
 ##  Screenshots
 
 ### Landing Page
-![Landing Page](screenshots/landing.png)
+![landing](screenshots/landing.png)
 
 ### Idea Generator
-![Generator](screenshots/generate.png)
+![generate](screenshots/generate.png)
 
 ---
 
