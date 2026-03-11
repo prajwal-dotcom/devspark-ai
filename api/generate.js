@@ -34,9 +34,15 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    let text = "";
 
-    res.status(200).json({ text });
+    if (data?.candidates?.length > 0) {
+      text = data.candidates[0].content.parts
+     .map(part => part.text)
+     .join("");
+}
+
+res.status(200).json({ text });
 
   } catch (error) {
     console.error(error);
