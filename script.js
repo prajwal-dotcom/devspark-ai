@@ -301,7 +301,13 @@ const output = document.getElementById("output");
 
 let history = JSON.parse(localStorage.getItem("ideaHistory")) || [];
 
-output.innerHTML = "";
+output.innerHTML = `
+<div class="history-controls">
+<button class="clear-history-btn" onclick="clearHistory()">
+Clear History 🗑
+</button>
+</div>
+`;
 
 if(history.length === 0){
 output.innerHTML = "<p>No idea history yet.</p>";
@@ -332,5 +338,13 @@ ${clean}
 output.appendChild(card);
 
 });
+
+}
+function clearHistory(){
+
+localStorage.removeItem("ideaHistory");
+
+document.getElementById("output").innerHTML =
+"<p>History cleared successfully.</p>";
 
 }

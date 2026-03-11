@@ -366,3 +366,16 @@ width:100%;
 height:100%;
 z-index:-1;
 }
+.clear-history-btn{
+background:#ef4444;
+color:white;
+border:none;
+padding:8px 14px;
+border-radius:6px;
+cursor:pointer;
+margin-bottom:15px;
+}
+
+.clear-history-btn:hover{
+background:#dc2626;
+}
