@@ -47,7 +47,7 @@ https://devspark-ai.vercel.app
 ![Landing Page](screenshots/landing.png)
 
 ### Idea Generator
-![Generator](screenshots/generator.png)
+![Generator](screenshots/generate.png)
 
 ---
 
