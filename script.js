@@ -164,11 +164,17 @@ let savedIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
 output.innerHTML = "";
 
 if(savedIdeas.length === 0){
-output.innerHTML = "No saved ideas yet.";
+output.innerHTML = "<p>No saved ideas yet.</p>";
 return;
 }
 
 savedIdeas.forEach((idea, index)=>{
+
+let formattedIdea = idea
+.replace(/Idea Name:/gi,"<br><strong>Idea Name:</strong> ")
+.replace(/Description:/gi,"<br><br><strong>Description:</strong> ")
+.replace(/Difficulty:/gi,"<br><br><strong>Difficulty:</strong> ")
+.replace(/Tech Stack:/gi,"<br><br><strong>Tech Stack:</strong> ");
 
 const card = document.createElement("div");
 card.className = "idea-card";
@@ -176,7 +182,9 @@ card.className = "idea-card";
 card.innerHTML = `
 <h3>⭐ Saved Idea ${index+1}</h3>
 
-<div class="idea-text">${idea}</div>
+<div class="idea-text">
+${formattedIdea}
+</div>
 
 <div class="idea-actions">
 
@@ -196,7 +204,6 @@ output.appendChild(card);
 });
 
 }
-
 
 function copySavedIdea(index){
 
