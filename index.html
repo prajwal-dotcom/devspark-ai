@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DevSpark AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo"> DevSpark AI </div>
+
+<ul class="nav-links">
+
+<li><a href="#features">Features</a></li>
+<li><a href="#generator">Generator</a></li>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<h1>Generate Developer Project Ideas with AI</h1>
+
+<p>DevSpark AI helps developers create innovative project ideas instantly.</p>
+
+<a href="#generator" class="hero-btn">Try the Generator</a>
+
+</section>
+
+<section id="features" class="features">
+
+<h2>Why DevSpark AI?</h2>
+
+<div class="features-grid">
+
+<div class="feature-card">
+<h3>⚡ Hackathon Ideas</h3>
+<p>Generate creative ideas perfect for hackathons.</p>
+</div>
+
+<div class="feature-card">
+<h3>💡 Startup Concepts</h3>
+<p>Discover innovative startup ideas powered by AI.</p>
+</div>
+
+<div class="feature-card">
+<h3>🧠 AI Powered</h3>
+<p>Uses Google Gemini AI to generate developer ideas.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="generator" class="generator">
+
+<div class="container">
+
+<h1>DevSpark AI</h1>
+
+<p class="subtitle">Generate innovative developer ideas using AI</p>
+
+<div class="controls">
+
+<select id="category">
+<option>Python Project</option>
+<option>Web App Idea</option>
+<option>Startup Idea</option>
+<option>Hackathon Idea</option>
+</select>
+
+<button onclick="generateIdea()">Generate Idea</button>
+
+<button onclick="generateIdea()" class="regen-btn">
+Regenerate Ideas
+</button>
+
+<button onclick="clearIdeas()">Clear</button>
+
+</div>
+
+<div id="output"></div>
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+<p>Built with ❤️ by Prajwal </p>
+
+<p>Powered by Gemini AI</p>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
