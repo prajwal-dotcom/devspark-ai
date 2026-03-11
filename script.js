@@ -196,10 +196,6 @@ ${formattedIdea}
 Copy Idea 📋
 </button>
 
-<button class="save-btn" onclick="saveIdea(this)">
-Save Idea ⭐
-</button>
-
 <button class="pdf-btn" onclick="downloadPDF(this)">
 Download PDF 📄
 </button>
