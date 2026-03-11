@@ -451,3 +451,27 @@ width:48%;
 }
 
 }
+.nav-links a,
+.navbar a{
+color:white;
+text-decoration:none;
+font-weight:500;
+}
+
+.navbar a:hover{
+color:#00c6ff;
+}
+.github-link{
+color:white;
+text-decoration:none;
+font-weight:500;
+border:1px solid rgba(255,255,255,0.2);
+padding:6px 14px;
+border-radius:6px;
+transition:0.2s;
+}
+
+.github-link:hover{
+background:#00c6ff;
+color:black;
+}
