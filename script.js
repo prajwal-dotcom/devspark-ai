@@ -77,6 +77,9 @@ ${cleanIdea}
 <button class="copy-btn" onclick="copyIdea(this)">
 Copy Idea 📋
 </button>
+<button class="save-btn" onclick="saveIdea(this)">
+Save Idea ⭐
+</button>
 
 </div>
 `;
@@ -136,4 +139,61 @@ button.innerText = "Copy Idea 📋";
 
 function clearIdeas(){
 document.getElementById("output").innerHTML="";
+}
+function saveIdea(button){
+
+const ideaText = button.parentElement.querySelector(".idea-text").innerText;
+
+let savedIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+
+savedIdeas.push(ideaText);
+
+localStorage.setItem("savedIdeas", JSON.stringify(savedIdeas));
+
+button.innerText = "Saved ⭐";
+
+}
+function showSavedIdeas(){
+
+const output = document.getElementById("output");
+
+let savedIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+
+output.innerHTML = "";
+
+if(savedIdeas.length === 0){
+output.innerHTML = "No saved ideas yet.";
+return;
+}
+
+savedIdeas.forEach((idea, index)=>{
+
+const card = document.createElement("div");
+card.className = "idea-card";
+
+card.innerHTML = `
+<h3>⭐ Saved Idea ${index+1}</h3>
+
+<p>${idea}</p>
+
+<button onclick="deleteIdea(${index})">
+Delete ❌
+</button>
+`;
+
+output.appendChild(card);
+
+});
+
+}
+function deleteIdea(index){
+
+let savedIdeas = JSON.parse(localStorage.getItem("savedIdeas")) || [];
+
+savedIdeas.splice(index,1);
+
+localStorage.setItem("savedIdeas", JSON.stringify(savedIdeas));
+
+showSavedIdeas();
+
 }
